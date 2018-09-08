@@ -1,37 +1,37 @@
 export interface IPoll
 {
   id?: string;
-  pollGuid?: string;
-  question: string;
-  pollAnswers: IAnswers[];
+  PollGuid?: string;
+  Question: string;
+  PollAnswers: IAnswers[];
 }
 export interface IAnswers
 {
-  orderId: number;
-  text: string;
-  scalarValue?: number;
+  OrderId: number;
+  Text: string;
+  ScalarValue?: number;
 }
 
 export interface IPollResult
 {
   id: string;
-  parentPollGuid: string;
-  answers: IPollAnswer[];
+  ParentPollGuid: string;
+  Answers: IPollAnswer[];
 }
 export interface IPollAnswer extends IAnswers
 {
-  selected?: boolean;
+  Selected?: boolean;
 }
 
 export interface IPollReport
 {
   id: string;
-  parentPollGuid: string;
-  pollAnswerSummaries: IPollAnswerSummary[];
+  ParentPollGuid: string;
+  PollAnswerSummaries: IPollAnswerSummary[];
 }
 export interface IPollAnswerSummary
 {
-  answerText: string;
-  orderId: number;
-  count: number;
+  AnswerText: string;
+  OrderId: number;
+  Count: number;
 }

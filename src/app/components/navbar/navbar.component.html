@@ -4,8 +4,8 @@
     <span class="spacer"></span>
     <mat-form-field color="accent" [appearance]="'standard'" style="margin: 0 8px; font-size: 14px">
       <!-- <mat-label>Search for a poll</mat-label> -->
-      <input matInput placeholder="Search for a poll" [formControl]="search" autocomplete="off">
+      <input (keyup)="searchPoll($event)" matInput placeholder="Search for a poll" [formControl]="search" autocomplete="off">
     </mat-form-field>
-    <button mat-stroked-button routerLink="/create">Create a poll</button>
+    <!-- <button mat-stroked-button routerLink="/create">Create a poll</button> -->
   </mat-toolbar-row>
 </mat-toolbar>

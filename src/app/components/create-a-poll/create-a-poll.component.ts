@@ -73,8 +73,8 @@ export class CreateAPollComponent implements OnInit
     console.log(this.answersFroms.controls);
 
     const new_poll: IPoll = {
-      question: this.question.value,
-      pollAnswers: this.createPollAnswersArray()
+      Question: this.question.value,
+      PollAnswers: this.createPollAnswersArray()
     };
 
     console.log('New poll', new_poll);
@@ -101,8 +101,8 @@ export class CreateAPollComponent implements OnInit
     this.answersFroms.controls.forEach((group: FormGroup, i) =>
     {
       array.push({
-        orderId: i,
-        text: group.controls['text'].value
+        OrderId: i,
+        Text: group.controls['text'].value
       });
     });
 
