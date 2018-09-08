@@ -1,0 +1,47 @@
+
+
+:host
+{
+  max-width: 800px;
+  width: 100%;
+
+  .card
+  {
+    .card-content
+    {
+      form
+      {
+        .question-title
+        {
+          width: 100%;
+        }
+
+        .answers
+        {
+          display: flex;
+          flex-direction: column;
+          padding: 0 32px;
+
+          .answer-form-field
+          {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 5fr minmax(50px, 1fr);
+            align-items: center;
+
+            mat-form-field
+            {
+              width: 100%;
+            }
+          }
+          .function-buttons
+          {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+          }
+        }
+      }
+    }
+  }
+}

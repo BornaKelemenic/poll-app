@@ -1,0 +1,56 @@
+<mat-card class="card">
+  <mat-card-header>
+    <mat-card-title>
+      Create your own poll
+    </mat-card-title>
+  </mat-card-header>
+  <mat-card-content class="card-content">
+    <mat-progress-bar color="accent" *ngIf="processing" mode="indeterminate"></mat-progress-bar>
+
+    <form [formGroup]="form">
+      <mat-form-field [appearance]="'outline'" class="question-title">
+        <mat-label>Question</mat-label>
+        <input matInput formControlName="question" autocomplete="off">
+
+        <mat-error *ngIf="question.hasError('required') || question.hasError('whitespace')">
+          Well, you have to have a question
+        </mat-error>
+        <mat-error *ngIf="!question.hasError('required') && question.hasError('minlength')">
+          Minimal length is 3
+        </mat-error>
+        <mat-error *ngIf="!question.hasError('required') && question.hasError('maxlength')">
+          Maximal length is 500
+        </mat-error>
+        <mat-hint align="end">{{ question.value?.length || 0 }}/500</mat-hint>
+
+      </mat-form-field>
+
+      <div formArrayName="answers" class="answers">
+        <div *ngFor="let answer of answersFroms.controls; let i=index" [formGroupName]="i" class="answer-form-field">
+          <mat-form-field [appearance]="'standard'">
+            <input matInput placeholder="Answer" formControlName="text" autocomplete="off">
+            <mat-error *ngIf="answersFroms.controls[i].controls['text'].hasError('required') ||
+                              answersFroms.controls[i].controls['text'].hasError('whitespace')">
+              No empty answers
+            </mat-error>
+          </mat-form-field>
+
+          <div class="function-buttons">
+            <button mat-icon-button color="warn" *ngIf="i >= 2" (click)="removeAnswer(i)">
+              <mat-icon aria-label="Delete Answer">remove_circle_outline</mat-icon>
+            </button>
+            <button mat-icon-button color="accent" *ngIf="i == answersFroms.controls.length - 1" (click)="addAnswer()">
+              <mat-icon aria-label="Add an answer">add_circle_outline</mat-icon>
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </form>
+
+  </mat-card-content>
+  <mat-card-actions align="end">
+    <button mat-stroked-button (click)="clearForm()">Clear</button>
+    <button [disabled]="form.invalid || processing" mat-raised-button color="accent" (click)="submitPoll()">Create Poll</button>
+  </mat-card-actions>
+</mat-card>
