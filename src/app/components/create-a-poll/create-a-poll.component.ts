@@ -3,6 +3,7 @@ import { PollService } from '../../services/poll.service';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { IPoll, IAnswers } from '../../models/poll.model';
 import { HelperService } from '../../services/helper.service';
+import { noWhitespaceValidator } from '../../helpful-functions/functions';
 
 @Component({
   selector: 'poll-create-a-poll',
@@ -31,7 +32,7 @@ export class CreateAPollComponent implements OnInit
   {
     this.form = this.fb.group({
       question: ['', Validators.compose([
-        Validators.required, Validators.minLength(3), Validators.maxLength(500), this.noWhitespaceValidator
+        Validators.required, Validators.minLength(3), Validators.maxLength(500), noWhitespaceValidator
       ])],
       answers: this.fb.array([])
     });
@@ -50,7 +51,7 @@ export class CreateAPollComponent implements OnInit
   addAnswer()
   {
     const answer = this.fb.group({
-      text: ['', [Validators.required, this.noWhitespaceValidator]]
+      text: ['', [Validators.required, noWhitespaceValidator]]
     });
 
     this.answersFroms.push(answer);
@@ -106,13 +107,5 @@ export class CreateAPollComponent implements OnInit
     });
 
     return array;
-  }
-
-
-  private noWhitespaceValidator(control: FormControl)
-  {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    const isValid = !isWhitespace;
-    return isValid ? null : { 'whitespace': true };
   }
 }

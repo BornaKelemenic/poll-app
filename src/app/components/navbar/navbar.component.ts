@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
+import { noWhitespaceValidator } from '../../helpful-functions/functions';
 
 @Component({
   selector: 'poll-navbar',
@@ -8,7 +9,7 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class NavbarComponent implements OnInit
 {
-  search: FormControl = new FormControl('', [Validators.required]);
+  search: FormControl = new FormControl('', [noWhitespaceValidator]);
 
   constructor()
   {}
