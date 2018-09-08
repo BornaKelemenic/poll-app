@@ -8,7 +8,7 @@
     <mat-progress-bar color="accent" *ngIf="processing" mode="indeterminate"></mat-progress-bar>
 
     <form [formGroup]="form">
-      <mat-form-field [appearance]="'outline'" class="question-title">
+      <mat-form-field color="accent" [appearance]="'outline'" class="question-title">
         <mat-label>Question</mat-label>
         <input matInput formControlName="question" autocomplete="off">
 
@@ -27,7 +27,7 @@
 
       <div formArrayName="answers" class="answers">
         <div *ngFor="let answer of answersFroms.controls; let i=index" [formGroupName]="i" class="answer-form-field">
-          <mat-form-field [appearance]="'standard'">
+          <mat-form-field color="accent" [appearance]="'standard'">
             <input matInput placeholder="Answer" formControlName="text" autocomplete="off">
             <mat-error *ngIf="answersFroms.controls[i].controls['text'].hasError('required') ||
                               answersFroms.controls[i].controls['text'].hasError('whitespace')">
