@@ -1,0 +1,41 @@
+.wrapper
+{
+  padding: 16px;
+
+  .card
+  {
+    max-width: 400px;
+    margin: 0 auto;
+
+    .title
+    {
+      font-size: 1.5em;
+    }
+
+    .answer-wrapper
+    {
+      .answer
+      {
+        position: relative;
+        border: 1px solid #7f9b5e;
+        height: 24px;
+        margin-bottom: 16px;
+
+        .bar
+        {
+          background-color: #8BC34A;
+          height: 100%;
+        }
+        .count
+        {
+          position: absolute;
+          top: 50%;
+          right: 5%;
+          transform: translateY(-50%);
+          font-size: 16px;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

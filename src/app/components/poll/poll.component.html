@@ -1,6 +1,7 @@
 <div class="wrapper">
 
-  <mat-card>
+  <mat-progress-bar mode="indeterminate" *ngIf="loading" color="accent"></mat-progress-bar>
+  <mat-card class="card">
     <mat-card-header>
       <mat-card-title>{{ poll?.Question }}</mat-card-title>
     </mat-card-header>
@@ -13,7 +14,12 @@
       </mat-radio-group>
 
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions align="end">
+
+      <button mat-raised-button [disabled]="selectedAnswer == null || selectedAnswer == undefined" color="accent" (click)="vote()">
+        Vote
+      </button>
+
     </mat-card-actions>
   </mat-card>
 </div>

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './components/home/home.component';
 import { CreateAPollComponent } from './components/create-a-poll/create-a-poll.component';
 import { PollComponent } from './components/poll/poll.component';
+import { PollResultsComponent } from './components/poll-results/poll-results.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { PollComponent } from './components/poll/poll.component';
     NavbarComponent,
     HomeComponent,
     CreateAPollComponent,
-    PollComponent
+    PollComponent,
+    PollResultsComponent
   ],
   imports: [
     BrowserModule,

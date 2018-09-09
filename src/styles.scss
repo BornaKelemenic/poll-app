@@ -7,7 +7,7 @@
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $poll-app-primary: mat-palette($mat-blue-gray);
-$poll-app-accent:  mat-palette($mat-light-green, A200, A100, A400);
+$poll-app-accent:  mat-palette($mat-light-green);
 
 $poll-app-warn:    mat-palette($mat-red);
 

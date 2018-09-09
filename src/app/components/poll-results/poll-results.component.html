@@ -1,0 +1,21 @@
+<div class="wrapper">
+
+  <mat-progress-bar mode="indeterminate" *ngIf="loading" color="accent"></mat-progress-bar>
+  <mat-card class="card" *ngIf="!loading">
+    <mat-card-header>
+      <mat-card-title class="title">{{ poll?.Question }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="answer-wrapper">
+        <div class="answer" *ngFor="let ans of poll.PollAnswerSummaries">
+          <div class="bar" [style.width]="poll.VoteCount > 0 ? ((ans.Count / poll.VoteCount) * 100) + '%' : '0'"></div>
+          <div class="count">{{ ans.Count }}</div>
+        </div>
+      </div>
+
+    </mat-card-content>
+    <mat-card-actions align="end">
+    </mat-card-actions>
+  </mat-card>
+</div>

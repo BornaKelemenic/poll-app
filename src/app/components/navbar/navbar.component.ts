@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { noWhitespaceValidator } from '../../helpful-functions/functions';
 import { Router } from '@angular/router';
+import { PollService } from '../../services/poll.service';
+import { debounceTime, filter } from 'rxjs/operators';
+import { ISearchResult } from '../../models/poll.model';
+import { MatAutocompleteSelectedEvent } from '@angular/material';
 
 @Component({
   selector: 'poll-navbar',
@@ -10,23 +14,51 @@ import { Router } from '@angular/router';
 })
 export class NavbarComponent implements OnInit
 {
-  search: FormControl = new FormControl('', [noWhitespaceValidator]);
+  search: FormControl = new FormControl('');
+
+  search_results: ISearchResult[] = [];
 
   constructor(
-    private router: Router
+    private router: Router,
+    private pollService: PollService
   )
-  {}
+  { }
 
   ngOnInit()
   {
+    this.search.valueChanges.pipe(debounceTime(1000), filter(term => !!term))
+      .subscribe(value => this.searchPoll());
   }
 
-  searchPoll(event: KeyboardEvent)
+  searchPoll()
   {
-    if (event.key === 'Enter' && this.search.value  && this.search.value.trim())
+    if (typeof this.search.value !== 'string')
     {
-      this.router.navigate(['/poll', this.search.value.trim()]);
+      return;
     }
+
+    const term = encodeURIComponent(this.search.value.trim());
+
+    this.pollService.searchForAPoll(term).subscribe(res =>
+    {
+      console.log('Response for a search', res);
+      this.search_results = res.value;
+
+    }, err =>
+      {
+        console.log('Error on search', err);
+      });
   }
 
+  displayFn(result: ISearchResult): string | undefined
+  {
+    return result ? result.Question : undefined;
+  }
+
+  selectPoll(event: MatAutocompleteSelectedEvent)
+  {
+    const result: ISearchResult = event.option.value;
+
+    this.router.navigate(['/poll', result.ParentPollGuid]);
+  }
 }

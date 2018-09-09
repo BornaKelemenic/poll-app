@@ -4,6 +4,7 @@ import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@ang
 import { IPoll, IAnswers } from '../../models/poll.model';
 import { HelperService } from '../../services/helper.service';
 import { noWhitespaceValidator } from '../../helpful-functions/functions';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'poll-create-a-poll',
@@ -18,14 +19,13 @@ export class CreateAPollComponent implements OnInit
   constructor(
     private pollService: PollService,
     private fb: FormBuilder,
-    private helper: HelperService
+    private helper: HelperService,
+    private router: Router
   ) { }
 
   ngOnInit()
   {
     this.createForm();
-
-    console.log('Form control', this.answersFroms.controls);
   }
 
   private createForm()
@@ -86,6 +86,7 @@ export class CreateAPollComponent implements OnInit
       console.log('Response', res);
       this.processing = false;
       this.createForm(); // Reset form
+      this.router.navigate(['/poll', res]);
 
     }, err =>
       {

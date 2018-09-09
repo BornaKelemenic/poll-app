@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { APIDOMAIN } from 'src/api-url';
+import { APIDOMAIN, SEARCH_API_URL, API_KEY } from 'src/api-url';
 import { Observable } from 'rxjs';
-import { IPoll, IPollReport, IPollResult } from '../models/poll.model';
+import { IPoll, IPollReport, IPollResult, ISearchResponse } from '../models/poll.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class PollService
   constructor(
     private http: HttpClient
   )
-  {}
+  { }
 
 
   /**
@@ -59,5 +59,14 @@ export class PollService
   submitPollResult(result: IPollResult): Observable<void>
   {
     return this.http.post<void>(APIDOMAIN + 'poll/results', result);
+  }
+
+  searchForAPoll(term: string): Observable<ISearchResponse>
+  {
+    return this.http.get<ISearchResponse>(SEARCH_API_URL + term, {
+      headers: {
+        'api-key': API_KEY
+      }
+    });
   }
 }

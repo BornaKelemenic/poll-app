@@ -3,9 +3,11 @@
     <span routerLink="/" style="cursor: pointer">Poll</span>
     <span class="spacer"></span>
     <mat-form-field color="accent" [appearance]="'standard'" style="margin: 0 8px; font-size: 14px">
-      <!-- <mat-label>Search for a poll</mat-label> -->
-      <input (keyup)="searchPoll($event)" matInput placeholder="Search for a poll" [formControl]="search" autocomplete="off">
+      <input matInput placeholder="Search for a poll" [formControl]="search" autocomplete="off" [matAutocomplete]="search_autocomplete">
     </mat-form-field>
-    <!-- <button mat-stroked-button routerLink="/create">Create a poll</button> -->
   </mat-toolbar-row>
 </mat-toolbar>
+
+<mat-autocomplete #search_autocomplete="matAutocomplete" (optionSelected)="selectPoll($event)" [displayWith]="displayFn">
+  <mat-option *ngFor="let result of search_results" [value]="result">{{ result.Question }} | Votes: {{ result.VoteCount }}</mat-option>
+</mat-autocomplete>
