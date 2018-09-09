@@ -43,6 +43,7 @@ export class NavbarComponent implements OnInit
     {
       console.log('Response for a search', res);
       this.search_results = res.value;
+      this.search_results.sort((s1, s2) => s2.VoteCount - s1.VoteCount);
 
     }, err =>
       {

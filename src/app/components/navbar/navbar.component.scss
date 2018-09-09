@@ -8,7 +8,11 @@
   flex: 1 1 auto;
 }
 
-::ng-deep .cdk-overlay-pane
+.search
 {
-  width: auto !important;
+  margin: 0 8px;
+  font-size: 14px;
+  width: 100%;
+  max-width: 300px;
+
 }
