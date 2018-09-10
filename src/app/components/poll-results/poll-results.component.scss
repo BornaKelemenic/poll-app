@@ -17,9 +17,10 @@
       .answer
       {
         position: relative;
-        border: 1px solid #7f9b5e;
         height: 24px;
         margin-bottom: 16px;
+        display: grid;
+        grid-template-columns: 1fr 3fr;
 
         .bar
         {

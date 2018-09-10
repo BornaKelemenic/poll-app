@@ -9,6 +9,7 @@
 
       <div class="answer-wrapper">
         <div class="answer" *ngFor="let ans of poll.PollAnswerSummaries">
+          <span class="text">{{ ans.AnswerText }}</span>
           <div class="bar" [style.width]="poll.VoteCount > 0 ? ((ans.Count / poll.VoteCount) * 100) + '%' : '0'"></div>
           <div class="count">{{ ans.Count }}</div>
         </div>
@@ -16,6 +17,7 @@
 
     </mat-card-content>
     <mat-card-actions align="end">
+      <button mat-raised-button color="primary" [routerLink]="['/poll', guid]">Vote</button>
     </mat-card-actions>
   </mat-card>
 </div>

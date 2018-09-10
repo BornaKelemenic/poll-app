@@ -3,7 +3,7 @@
   <mat-progress-bar mode="indeterminate" *ngIf="loading" color="accent"></mat-progress-bar>
   <mat-card class="card">
     <mat-card-header>
-      <mat-card-title>{{ poll?.Question }}</mat-card-title>
+      <mat-card-title class="title">{{ poll?.Question }}</mat-card-title>
     </mat-card-header>
     <mat-card-content>
 
@@ -15,6 +15,8 @@
 
     </mat-card-content>
     <mat-card-actions align="end">
+
+      <button mat-raised-button color="primary" [routerLink]="['/results', poll_guid]">Results</button>
 
       <button mat-raised-button [disabled]="selectedAnswer == null || selectedAnswer == undefined" color="accent" (click)="vote()">
         Vote
